@@ -54,6 +54,19 @@
         })
       );
     });
+
+    const preventTyping = (event) => {
+      const allowedKeys = ["ArrowUp", "ArrowRight", "ArrowDown", "ArrowLeft"];
+      if (!allowedKeys.includes(event.key)) {
+        event.preventDefault();
+      }
+    };
+
+    quill.on("selection-change", function (range, oldRange, source) {
+      if (range && range.length > 0) {
+        container.addEventListener("keydown", preventTyping);
+      } else if (!range || range.length == 0) container.removeEventListener("keydown", preventTyping);
+    });
   });
 
   const disableCut = (event) => {
