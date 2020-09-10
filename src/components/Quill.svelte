@@ -1,5 +1,6 @@
 <script>
   import { onMount } from "svelte";
+  import ClearContentsButton from "../components/clearContentsButton.svelte";
 
   import { contents } from "./stores";
 
@@ -17,11 +18,9 @@
 
   export let toolbarOptions = [
     [{ header: [1, 2, 3, 4, 5, 6, false] }],
-    ["blockquote", "link"],
-    ["bold", "italic", "underline", strikethrough],
+    ["bold", "italic", "underline", strikethrough, "blockquote", "link"],
     [{ list: "ordered" }, { list: "bullet" }],
-    [{ indent: "-1" }, { indent: "+1" }],
-    [{ align: [] }],
+    [{ align: [] }, { indent: "-1" }, { indent: "+1" }],
     ["clean"], // Remove formatting
   ];
 
@@ -58,6 +57,8 @@
       placeholder: "Start writing…",
     });
 
+    quill.setContents($contents.contents);
+
     const container = editor.querySelector(".ql-editor");
 
     quill.on("text-change", function (delta, oldDelta, source) {
@@ -72,6 +73,16 @@
       );
     });
 
+    quill.on("selection-change", function (range, oldRange, source) {
+      if (range && range.length > 0) {
+        container.addEventListener("keydown", preventTyping);
+      } else if (!range) {
+        container.removeEventListener("keydown", preventTyping);
+      } else if (range && range.length == 0) {
+        container.removeEventListener("keydown", preventTyping);
+      }
+    });
+
     const preventTyping = (event) => {
       const allowedKeys = ["ArrowUp", "ArrowRight", "ArrowDown", "ArrowLeft"];
 
@@ -79,6 +90,7 @@
       const { index, length } = quill.getSelection();
       const rangeEnd = index + length;
 
+      // TODO: Add a check here to make sure Shift isn't being pressed as well as an arrow key
       if (allowedKeys.includes(event.key)) {
         event.preventDefault();
 
@@ -92,28 +104,26 @@
         event.preventDefault();
       }
     };
-
-    quill.on("selection-change", function (range, oldRange, source) {
-      if (range && range.length > 0) {
-        container.addEventListener("keydown", preventTyping);
-      } else if (!range) {
-        container.removeEventListener("keydown", preventTyping);
-      } else if (range && range.length == 0) {
-        container.removeEventListener("keydown", preventTyping);
-      }
-    });
   });
 
-  const disableCut = (event) => {
-    event.preventDefault();
-  };
+  // End of on mount
 
   const updateStore = (event) => {
-    $contents.datetime = new Date().getTime();
-    $contents.html = event.detail.html;
-    $contents.contents = event.detail.contents;
-    $contents.plainText = event.detail.plainText;
+    // $contents.datetime = new Date().getTime();
+    // $contents.html = event.detail.html;
+    // $contents.contents = event.detail.contents;
+    // $contents.plainText = event.detail.plainText;
+
+    $contents = {
+      datetime: new Date().getTime(),
+      html: event.detail.html,
+      contents: event.detail.contents,
+      plainText: event.detail.plainText,
+    };
   };
+  // const logger = () => {
+  //   console.log(1);
+  // };
 </script>
 
 <style>
@@ -128,5 +138,9 @@
 </svelte:head>
 
 <div class="editor-wrapper">
-  <div bind:this={editor} on:cut={disableCut} on:text-change={updateStore} />
+  <div bind:this={editor} on:cut|preventDefault on:text-change={updateStore} />
+</div>
+<div>
+  <ClearContentsButton />
+  <!-- <ClearContentsButton on:allowTyping={logger} /> -->
 </div>

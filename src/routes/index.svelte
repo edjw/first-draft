@@ -2,8 +2,6 @@
   import Quill from "../components/Quill.svelte";
 
   import { contents } from "../components/stores.js";
-
-  import ClearContentsButton from "../components/clearContentsButton.svelte";
 </script>
 
 <svelte:head>
@@ -14,8 +12,8 @@
 </svelte:head>
 
 <Quill />
-<div>{$contents.datetime}</div>
-<div>{$contents.html}</div>
-<div>{$contents.contents}</div>
-<div>{$contents.plainText}</div>
-<ClearContentsButton />
+<!-- <div>all contents: {$contents}</div>
+<div>datetime: {$contents.datetime}</div>
+<div>html: {$contents.html}</div>
+<div>contents: {$contents.contents}</div>
+<div>plain text: {$contents.plainText}</div> -->

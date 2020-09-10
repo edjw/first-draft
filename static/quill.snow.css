@@ -955,3 +955,7 @@
 .ql-container.ql-snow {
   border: 1px solid #ccc;
 }
+
+.ql-editor {
+  min-height: 300px;
+}
