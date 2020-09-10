@@ -8,6 +8,10 @@
     padding: 1rem 2rem;
     margin: 0 auto;
   }
+
+  p {
+    font-size: 16px;
+  }
 </style>
 
 <svelte:head>
@@ -16,7 +20,10 @@
 
 <header>
   <h1>First Draft</h1>
-  <p>Write and save anything you want. But sorry, you can't delete any text</p>
+  <p>
+    Write your first draft without editing slowing you down. You can't delete
+    any text once you've typed it.
+  </p>
 </header>
 <main>
   <slot />
