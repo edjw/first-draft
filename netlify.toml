@@ -3,6 +3,7 @@
   publish = "__sapper__/export"
 
 [[redirects]]
-  from = "/*"
+  from = "*"
   to = "/"
+  force=true
   status = 301
