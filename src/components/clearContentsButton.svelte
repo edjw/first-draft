@@ -3,6 +3,12 @@
   // import { createEventDispatcher } from "svelte";
   // const dispatch = createEventDispatcher();
 
+  const confirmClear = () => {
+    if (confirm("Are you sure you want to delete all your text?")) {
+      clearContents();
+    }
+  };
+
   const clearContents = () => {
     // const startingText = `{"ops":[{"insert":"\n"}]}`;
     $contents.html = undefined;
@@ -13,4 +19,10 @@
   };
 </script>
 
-<button on:click={clearContents}>Start again</button>
+<style>
+  button {
+    padding: 0.5rem 3rem;
+  }
+</style>
+
+<button on:click={confirmClear}>Start again</button>
