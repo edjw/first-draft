@@ -956,6 +956,12 @@
   border: 1px solid #ccc;
 }
 
+.ql-container {
+  font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-size: 16px;
+}
+
 .ql-editor {
   min-height: 300px;
 }
