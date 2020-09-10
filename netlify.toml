@@ -1,9 +1,3 @@
 [build]
   command = "yarn export"
   publish = "__sapper__/export"
-
-[[redirects]]
-  from = "*"
-  to = "/"
-  force=true
-  status = 301
