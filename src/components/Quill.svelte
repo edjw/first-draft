@@ -17,11 +17,18 @@
   }
 
   export let toolbarOptions = [
-    [{ header: [1, 2, 3, 4, 5, 6, false] }],
-    ["bold", "italic", "underline", strikethrough, "blockquote", "link"],
+    [{ header: 1 }, { header: 2 }],
+    [
+      "bold",
+      "italic",
+      "underline",
+      strikethrough,
+      "blockquote",
+      "code-block",
+      "link",
+    ],
     [{ list: "ordered" }, { list: "bullet" }],
-    [{ align: [] }, { indent: "-1" }, { indent: "+1" }],
-    ["clean"], // Remove formatting
+    [{ indent: "-1" }, { indent: "+1" }, "clean"],
   ];
 
   onMount(async () => {
@@ -90,8 +97,7 @@
       const { index, length } = quill.getSelection();
       const rangeEnd = index + length;
 
-      // TODO: Add a check here to make sure Shift isn't being pressed as well as an arrow key
-      if (allowedKeys.includes(event.key)) {
+      if (allowedKeys.includes(event.key) && !event.shiftKey) {
         event.preventDefault();
 
         if (event.key === "ArrowUp" || event.key === "ArrowLeft") {
