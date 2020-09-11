@@ -9,8 +9,13 @@
     margin: 0 auto;
   }
 
+  h1 {
+    margin-bottom: 0;
+  }
+
   p {
     font-size: 16px;
+    margin-top: 0.5rem;
   }
 </style>
 
@@ -20,10 +25,7 @@
 
 <header>
   <h1>First Draft</h1>
-  <p>
-    Write your first draft without editing slowing you down. You can't delete
-    any text once you've typed it.
-  </p>
+  <p>Don't let editing slow down your first draft</p>
 </header>
 <main>
   <slot />

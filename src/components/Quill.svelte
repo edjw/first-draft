@@ -89,10 +89,16 @@
       },
 
       theme: "snow",
-      placeholder: "Start writing…",
+      placeholder: `Start writing…
+
+You can't delete any text you type.
+
+Breeze through your typos. You can clean them up later.
+`,
     });
 
     quill.setContents($contents.contents);
+    quill.focus();
 
     const container = editor.querySelector(".ql-editor");
 
