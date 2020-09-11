@@ -16,7 +16,7 @@
     strikethrough = undefined;
   }
 
-  export let toolbarOptions = [
+  let toolbarOptions = [
     [{ header: 1 }, { header: 2 }],
     [
       "bold",
@@ -31,6 +31,64 @@
     [{ indent: "-1" }, { indent: "+1" }, "clean"],
   ];
 
+  export let theme = "snow";
+
+  // Don't change this weird formatting
+  const placeholderText = `Start writing…
+
+You can't delete any text you type.
+
+Breeze through your typos. You can clean them up later.
+`;
+
+  const keyBindings = {
+    handleDelete: {
+      key: "Delete",
+      handler: function () {},
+    },
+    handleShiftDelete: {
+      key: "Delete",
+      shiftKey: true,
+      handler: function () {},
+    },
+    handleBackspace: {
+      key: "Backspace",
+      handler: function () {},
+    },
+    handlesShiftBackspace: {
+      key: "Backspace",
+      shiftKey: true,
+      handler: function () {},
+    },
+    handlesSuperBackspace: {
+      key: "Backspace",
+      shortKey: true,
+      handler: function () {},
+    },
+    handleUndo: {
+      key: "Z",
+      shortKey: true,
+      handler: function () {},
+    },
+    tab: {
+      key: 9,
+      handler: function () {},
+    },
+    enter: {
+      key: "Enter",
+      handler: function (range) {
+        if (range.length === 0) {
+          // If nothing is selected, enter works as normal
+          return true;
+        } else if (range.length > 0) {
+          // If any characters are selected, enter is disabled
+          return false;
+        }
+      },
+    },
+    // Handle arrow buttons when text is selected here
+  };
+
   onMount(async () => {
     const { default: Quill } = await import("quill");
 
@@ -38,63 +96,11 @@
       modules: {
         toolbar: toolbarOptions,
         keyboard: {
-          bindings: {
-            handleDelete: {
-              key: "Delete",
-              handler: function () {},
-            },
-            handleShiftDelete: {
-              key: "Delete",
-              shiftKey: true,
-              handler: function () {},
-            },
-            handleBackspace: {
-              key: "Backspace",
-              handler: function () {},
-            },
-            handlesShiftBackspace: {
-              key: "Backspace",
-              shiftKey: true,
-              handler: function () {},
-            },
-            handlesSuperBackspace: {
-              key: "Backspace",
-              shortKey: true,
-              handler: function () {},
-            },
-            handleUndo: {
-              key: "Z",
-              shortKey: true,
-              handler: function () {},
-            },
-            tab: {
-              key: 9,
-              handler: function () {},
-            },
-            enter: {
-              key: "Enter",
-              handler: function (range) {
-                if (range.length === 0) {
-                  // If nothing is selected, enter works as normal
-                  return true;
-                } else if (range.length > 0) {
-                  // If any characters are selected, enter is disabled
-                  return false;
-                }
-              },
-            },
-            // Handle arrow buttons when text is selected here
-          },
+          bindings: keyBindings,
         },
       },
-
-      theme: "snow",
-      placeholder: `Start writing…
-
-You can't delete any text you type.
-
-Breeze through your typos. You can clean them up later.
-`,
+      theme: theme,
+      placeholder: placeholderText,
     });
 
     quill.setContents($contents.contents);
