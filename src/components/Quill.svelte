@@ -43,8 +43,23 @@
               key: "Delete",
               handler: function () {},
             },
+            handleShiftDelete: {
+              key: "Delete",
+              shiftKey: true,
+              handler: function () {},
+            },
             handleBackspace: {
               key: "Backspace",
+              handler: function () {},
+            },
+            handlesShiftBackspace: {
+              key: "Backspace",
+              shiftKey: true,
+              handler: function () {},
+            },
+            handlesSuperBackspace: {
+              key: "Backspace",
+              shortKey: true,
               handler: function () {},
             },
             handleUndo: {
