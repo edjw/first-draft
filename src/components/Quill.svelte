@@ -71,6 +71,14 @@
               key: 9,
               handler: function () {},
             },
+            enter: {
+              key: "Enter",
+              handler: function (range) {
+                if (range.length === 0) {
+                  return true;
+                } else return false;
+              },
+            },
           },
         },
       },
@@ -130,11 +138,6 @@
   // End of on mount
 
   const updateStore = (event) => {
-    // $contents.datetime = new Date().getTime();
-    // $contents.html = event.detail.html;
-    // $contents.contents = event.detail.contents;
-    // $contents.plainText = event.detail.plainText;
-
     $contents = {
       datetime: new Date().getTime(),
       html: event.detail.html,
@@ -142,16 +145,12 @@
       plainText: event.detail.plainText,
     };
   };
-  // const logger = () => {
-  //   console.log(1);
-  // };
 </script>
 
 <style>
 </style>
 
 <svelte:head>
-  <title>First Draft – Home</title>
   <link rel="stylesheet" href="quill.snow.css" />
   <meta
     name="description"
@@ -163,5 +162,4 @@
 </div>
 <div>
   <ClearContentsButton />
-  <!-- <ClearContentsButton on:allowTyping={logger} /> -->
 </div>
