@@ -75,10 +75,15 @@
               key: "Enter",
               handler: function (range) {
                 if (range.length === 0) {
+                  // If nothing is selected, enter works as normal
                   return true;
-                } else return false;
+                } else if (range.length > 0) {
+                  // If any characters are selected, enter is disabled
+                  return false;
+                }
               },
             },
+            // Handle arrow buttons when text is selected here
           },
         },
       },
@@ -91,7 +96,7 @@
 
     const container = editor.querySelector(".ql-editor");
 
-    quill.on("text-change", function (delta, oldDelta, source) {
+    quill.on("text-change", function () {
       editor.dispatchEvent(
         new CustomEvent("text-change", {
           detail: {
@@ -102,6 +107,8 @@
         })
       );
     });
+
+    // If text is selected an an arrow key is pressed, move the cursor to where you expect instead of onto a new line. Bug in Quill maybe?
 
     quill.on("selection-change", function (range, oldRange, source) {
       if (range && range.length > 0) {
@@ -116,7 +123,7 @@
     const preventTyping = (event) => {
       const allowedKeys = ["ArrowUp", "ArrowRight", "ArrowDown", "ArrowLeft"];
 
-      // All this to get around some weird bug with removing selection with arrow keys
+      // All this to get around some weird bug with removing selection with arrow keys moving the cursor to a new line
       const { index, length } = quill.getSelection();
       const rangeEnd = index + length;
 
@@ -129,7 +136,7 @@
           quill.setSelection(rangeEnd, 0);
         }
       } else if (!allowedKeys.includes(event.key)) {
-        // prevent typing if it's not an arrow key
+        // prevent all typing if it's not an arrow key
         event.preventDefault();
       }
     };
