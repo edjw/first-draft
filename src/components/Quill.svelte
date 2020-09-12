@@ -41,56 +41,99 @@ You can't delete any text you type.
 Breeze through your typos. You can clean them up later.
 `;
 
-  const keyBindings = {
-    handleDelete: {
-      key: "Delete",
-      handler: function () {},
-    },
-    handleShiftDelete: {
-      key: "Delete",
-      shiftKey: true,
-      handler: function () {},
-    },
-    handleBackspace: {
-      key: "Backspace",
-      handler: function () {},
-    },
-    handlesShiftBackspace: {
-      key: "Backspace",
-      shiftKey: true,
-      handler: function () {},
-    },
-    handlesSuperBackspace: {
-      key: "Backspace",
-      shortKey: true,
-      handler: function () {},
-    },
-    handleUndo: {
-      key: "Z",
-      shortKey: true,
-      handler: function () {},
-    },
-    tab: {
-      key: 9,
-      handler: function () {},
-    },
-    enter: {
-      key: "Enter",
-      handler: function (range) {
-        if (range.length === 0) {
-          // If nothing is selected, enter works as normal
-          return true;
-        } else if (range.length > 0) {
-          // If any characters are selected, enter is disabled
-          return false;
-        }
-      },
-    },
-    // Handle arrow buttons when text is selected here
-  };
-
   onMount(async () => {
     const { default: Quill } = await import("quill");
+
+    const keyBindings = {
+      handleDelete: {
+        key: "Delete",
+        handler: function () {},
+      },
+      handleShiftDelete: {
+        key: "Delete",
+        shiftKey: true,
+        handler: function () {},
+      },
+      handleBackspace: {
+        key: "Backspace",
+        handler: function () {},
+      },
+      handlesShiftBackspace: {
+        key: "Backspace",
+        shiftKey: true,
+        handler: function () {},
+      },
+      handlesSuperBackspace: {
+        key: "Backspace",
+        shortKey: true,
+        handler: function () {},
+      },
+      handleUndo: {
+        key: "Z",
+        shortKey: true,
+        handler: function () {},
+      },
+      tab: {
+        key: 9,
+        handler: function (range) {
+          if (range.length === 0) {
+            return true;
+          } else if (range.length > 0) {
+            return false;
+          }
+        },
+      },
+      enter: {
+        key: "Enter",
+        handler: function (range) {
+          if (range.length === 0) {
+            return true;
+          } else if (range.length > 0) {
+            return false;
+          }
+        },
+      },
+      arrowLeft: {
+        key: 37,
+        handler: function (range) {
+          if (range.length === 0) {
+            return true;
+          } else if (range.length > 0) {
+            quill.setSelection(range.index, 0);
+          }
+        },
+      },
+      arrowUp: {
+        key: 38,
+        handler: function (range) {
+          if (range.length === 0) {
+            return true;
+          } else if (range.length > 0) {
+            quill.setSelection(range.index, 0);
+          }
+        },
+      },
+      arrowRight: {
+        key: 39,
+        handler: function (range) {
+          if (range.length === 0) {
+            return true;
+          } else if (range.length > 0) {
+            quill.setSelection(range.index + range.length, 0);
+          }
+        },
+      },
+      arrowDown: {
+        key: 40,
+        handler: function (range) {
+          if (range.length === 0) {
+            return true;
+          } else if (range.length > 0) {
+            quill.setSelection(range.index + range.length, 0);
+          }
+        },
+      },
+    };
 
     let quill = new Quill(editor, {
       modules: {
@@ -120,41 +163,39 @@ Breeze through your typos. You can clean them up later.
       );
     });
 
-    // If text is selected an an arrow key is pressed, move the cursor to where you expect instead of onto a new line. Bug in Quill maybe?
-
     quill.on("selection-change", function (range, oldRange, source) {
       if (range && range.length > 0) {
-        container.addEventListener("keydown", preventTyping);
+        container.addEventListener("keydown", preventTypingWhileSelected);
       } else if (!range) {
-        container.removeEventListener("keydown", preventTyping);
+        container.removeEventListener("keydown", preventTypingWhileSelected);
       } else if (range && range.length == 0) {
-        container.removeEventListener("keydown", preventTyping);
+        container.removeEventListener("keydown", preventTypingWhileSelected);
       }
     });
 
-    const preventTyping = (event) => {
-      const allowedKeys = ["ArrowUp", "ArrowRight", "ArrowDown", "ArrowLeft"];
-
-      // All this to get around some weird bug with removing selection with arrow keys moving the cursor to a new line
-      const { index, length } = quill.getSelection();
-      const rangeEnd = index + length;
-
-      if (allowedKeys.includes(event.key) && !event.shiftKey) {
-        event.preventDefault();
-
-        if (event.key === "ArrowUp" || event.key === "ArrowLeft") {
-          quill.setSelection(index, 0);
-        } else if (event.key === "ArrowDown" || event.key === "ArrowRight") {
-          quill.setSelection(rangeEnd, 0);
-        }
-      } else if (!allowedKeys.includes(event.key)) {
-        // prevent all typing if it's not an arrow key
-        event.preventDefault();
-      }
-    };
+    // End of on mount
   });
 
-  // End of on mount
+  const preventTypingWhileSelected = (event) => {
+    const allowedKeys = ["ArrowUp", "ArrowRight", "ArrowDown", "ArrowLeft"];
+    if (allowedKeys.includes(event.key)) {
+      return true;
+    } else if (event.ctrlKey && event.key === "c") {
+      return true;
+    } else {
+      event.preventDefault();
+    }
+  };
+
+  const allowTyping = () => {
+      document
+      .querySelector("div.ql-editor")
+      .removeEventListener("keydown", preventTypingWhileSelected);
+  };
+
+  const handleCut = (event) => {
+    event.preventDefault();
+  };
 
   const updateStore = (event) => {
     $contents = {
@@ -177,8 +218,8 @@ Breeze through your typos. You can clean them up later.
 </svelte:head>
 
 <div class="editor-wrapper">
-  <div bind:this={editor} on:cut|preventDefault on:text-change={updateStore} />
+  <div bind:this={editor} on:text-change={updateStore} on:cut={handleCut} />
 </div>
 <div>
-  <ClearContentsButton />
+  <ClearContentsButton on:allowTyping={allowTyping} />
 </div>
