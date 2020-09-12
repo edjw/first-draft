@@ -18,16 +18,9 @@
 
   let toolbarOptions = [
     [{ header: 1 }, { header: 2 }],
-    [
-      "bold",
-      "italic",
-      "underline",
-      strikethrough,
-      "blockquote",
-      "code-block",
-      "link",
-    ],
+    ["bold", "italic", "underline", strikethrough, "link"],
     [{ list: "ordered" }, { list: "bullet" }],
+
     ["clean"],
   ];
 
