@@ -163,7 +163,7 @@ Breeze through your typos. You can clean them up later.
       );
     });
 
-    quill.on("selection-change", function (range, oldRange, source) {
+    quill.on("selection-change", function (range) {
       if (range && range.length > 0) {
         container.addEventListener("keydown", preventTypingWhileSelected);
       } else if (!range) {
@@ -178,9 +178,10 @@ Breeze through your typos. You can clean them up later.
 
   const preventTypingWhileSelected = (event) => {
     const allowedKeys = ["ArrowUp", "ArrowRight", "ArrowDown", "ArrowLeft"];
+    const ctrlAllowedKeys = ["c", "r", "e", "l"];
     if (allowedKeys.includes(event.key)) {
       return true;
-    } else if (event.ctrlKey && event.key === "c") {
+    } else if (event.ctrlKey && ctrlAllowedKeys.includes(event.key)) {
       return true;
     } else {
       event.preventDefault();
@@ -188,7 +189,7 @@ Breeze through your typos. You can clean them up later.
   };
 
   const allowTyping = () => {
-      document
+    document
       .querySelector("div.ql-editor")
       .removeEventListener("keydown", preventTypingWhileSelected);
   };
