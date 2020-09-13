@@ -214,7 +214,7 @@ Breeze through your typos. You can clean them up later.
     min-height: 300px;
   }
 
-  :global(.ql-toolbar button, .ql-toolbar button) {
+  :global(doc.ql-toolbar button, doc.ql-toolbar button) {
     padding: 5px 5px;
   }
 
