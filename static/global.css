@@ -49,7 +49,7 @@ section > div > * + * {
 }
 
 .button {
-  border: 0;
+  border: 1px solid #333;
   border-radius: 0.25rem;
   font-size: 0.8rem;
   line-height: 1.2;
