@@ -20,8 +20,9 @@
 
 <style>
   button {
-    padding: 0.5rem 3rem;
+    min-width: 225px;
+    text-align: left;
   }
 </style>
 
-<button on:click={confirmClear}>Start again</button>
+<button class="button" on:click={confirmClear}>Start again</button>

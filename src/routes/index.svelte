@@ -13,7 +13,7 @@
 
 <Quill />
 <!-- <div>all contents: {$contents}</div>
-<div>datetime: {$contents.datetime}</div>
-<div>html: {$contents.html}</div>
-<div>contents: {$contents.contents}</div>
-<div>plain text: {$contents.plainText}</div> -->
+<div>datetime: {$contents.datetime}</div>-->
+<!-- <div>html: {$contents.html}</div> -->
+<!-- <div>contents: {$contents.contents}</div>
+<div>plain text: {$contents.plainText}</div>-->

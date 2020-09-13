@@ -1,6 +1,8 @@
 <script>
   import { onMount } from "svelte";
   import ClearContentsButton from "../components/clearContentsButton.svelte";
+  import CopyForWordGDocsButton from "../components/copyForWordGDocsButton.svelte";
+  import CopyAsMarkdownButton from "../components/copyAsMarkdownButton.svelte";
 
   import { contents } from "./stores";
 
@@ -202,10 +204,36 @@ Breeze through your typos. You can clean them up later.
 </script>
 
 <style>
+  :global(div.ql-container) {
+    font-family: Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen,
+      Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    font-size: 16px;
+  }
+
+  :global(div.ql-editor) {
+    min-height: 300px;
+  }
+
+  :global(.ql-toolbar button, .ql-toolbar button) {
+    padding: 5px 5px;
+  }
+
+  :global(div.ql-toolbar span.ql-formats > button) {
+    min-width: 28px;
+    min-height: 28px;
+  }
+
+  @media only screen and (max-width: 768px) {
+    div.editor-wrapper,
+    div.button-wrapper {
+      width: 96vw;
+      margin-left: calc(50% - 48vw);
+    }
+  }
 </style>
 
 <svelte:head>
-  <link rel="stylesheet" href="quill.snow.css" />
+  <link rel="stylesheet" href="quill.snow.min.css" />
   <meta
     name="description"
     content="First Draft. Write your first draft with no deleting allowed" />
@@ -214,6 +242,12 @@ Breeze through your typos. You can clean them up later.
 <div class="editor-wrapper">
   <div bind:this={editor} on:text-change={updateStore} on:cut={handleCut} />
 </div>
-<div>
+<div class="button-wrapper">
   <ClearContentsButton on:allowTyping={allowTyping} />
+</div>
+<div class="button-wrapper">
+  <CopyForWordGDocsButton />
+</div>
+<div class="button-wrapper">
+  <CopyAsMarkdownButton />
 </div>
