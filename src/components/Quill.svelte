@@ -221,6 +221,7 @@ Breeze through your typos. You can clean them up later.
   :global(div.ql-toolbar span.ql-formats > button) {
     min-width: 28px;
     min-height: 28px;
+    margin: 10px;
   }
 
   @media only screen and (max-width: 768px) {
