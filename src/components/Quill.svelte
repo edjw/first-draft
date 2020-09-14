@@ -258,7 +258,7 @@ Breeze through your typos. You can clean them up later.
 </style>
 
 <svelte:head>
-  <link rel="stylesheet" href="quill.snow.min.css" />
+  <link rel="stylesheet" href="css/quill.snow.min.css" />
   <meta
     name="description"
     content="First Draft. Write your first draft with no deleting allowed" />
