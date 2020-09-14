@@ -49,6 +49,7 @@ section > div > * + * {
 }
 
 .button {
+  -webkit-appearance: button;
   border: 1px solid #333;
   border-radius: 0.25rem;
   font-size: 0.8rem;
@@ -58,5 +59,4 @@ section > div > * + * {
   padding: 0.5rem 1rem;
   margin: 0.25rem;
   cursor: pointer;
-  -webkit-appearance: none;
 }
