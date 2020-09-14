@@ -14,6 +14,8 @@
       const markdown = turndownService.turndown(html);
       await navigator.clipboard.writeText(markdown);
       event.target.textContent = "Copied!";
+      document.querySelector("button#copyForWordButton").textContent =
+        "Copy for Word / Google Docs";
     } catch (error) {
       console.error("Copy failed", error);
     }

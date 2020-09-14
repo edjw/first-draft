@@ -13,6 +13,8 @@
       });
       await write([item]);
       event.target.textContent = "Copied!";
+      document.querySelector("button#copyAsMarkdownButton").textContent =
+        "Copy as Markdown";
     } catch (error) {
       console.error("Copy failed", error);
     }
