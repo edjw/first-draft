@@ -1,8 +1,11 @@
 <script>
   import { onMount } from "svelte";
   import ClearContentsButton from "../components/clearContentsButton.svelte";
+  // import ShowExportsButton from "../components/showExportsButton.svelte";
   import CopyForWordGDocsButton from "../components/copyForWordGDocsButton.svelte";
   import CopyAsMarkdownButton from "../components/copyAsMarkdownButton.svelte";
+
+  // import { fly } from "svelte/transition";
 
   import { contents } from "./stores";
 
@@ -204,6 +207,13 @@ Breeze through your typos. You can clean them up later.
       plainText: event.detail.plainText,
     };
   };
+
+  // let exportsShown = false;
+
+  // const toggleExportsShown = (exportsShown) => {
+  //   console.log(1);
+  //   // exportsShown = !exportsShown;
+  // };
 </script>
 
 <style>
@@ -223,7 +233,6 @@ Breeze through your typos. You can clean them up later.
 
   :global(div.ql-toolbar span.ql-formats > button) {
     min-width: 28px;
-    min-height: 28px;
     margin: 10px;
   }
 
@@ -260,9 +269,17 @@ Breeze through your typos. You can clean them up later.
 <div class="button-wrapper">
   <ClearContentsButton on:allowTyping={allowTyping} />
 </div>
-<div class="button-wrapper">
-  <CopyForWordGDocsButton />
-</div>
-<div class="button-wrapper">
-  <CopyAsMarkdownButton />
+<div class="export-buttons">
+  <!-- <ShowExportsButton on:click={toggleExportsShown} />
+  {exportsShown}
+  {#if exportsShown === false} -->
+  <!-- <div transition:fly={{ y: 200, duration: 2000 }}> -->
+  <div class="button-wrapper">
+    <CopyForWordGDocsButton />
+  </div>
+  <div class="button-wrapper">
+    <CopyAsMarkdownButton />
+  </div>
+  <!-- </div> -->
+  <!-- {/if} -->
 </div>
