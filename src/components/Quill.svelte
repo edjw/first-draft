@@ -136,6 +136,9 @@ Breeze through your typos. You can clean them up later.
         keyboard: {
           bindings: keyBindings,
         },
+        clipboard: {
+          matchVisual: false,
+        },
       },
       theme: theme,
       placeholder: placeholderText,
