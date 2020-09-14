@@ -2,18 +2,19 @@
 </script>
 
 <style>
+  header,
   main,
-  header {
+  footer {
     max-width: 56rem;
     padding: 0.5rem 2rem;
     margin: 0 auto;
   }
-  
-    @media only screen and (max-width: 768px) {
+
+  @media only screen and (max-width: 768px) {
+    header,
     main,
-    header {
-      width: 96vw;
-      margin-left: calc(50% - 48vw);
+    footer {
+      padding: 0.5rem 0;
     }
   }
 
@@ -21,9 +22,19 @@
     margin-bottom: 0;
   }
 
-  p {
+  p.subtitle {
     font-size: 16px;
     margin-top: 0.5rem;
+  }
+
+  footer {
+    margin: 1rem auto;
+    padding: 0;
+    border-top: 1px solid #333;
+  }
+
+  footer p {
+    color: rgba(0, 0, 0, 0.6);
   }
 </style>
 
@@ -33,8 +44,11 @@
 
 <header>
   <h1>First Draft</h1>
-  <p>Don't let editing slow down your first draft</p>
+  <p class="subtitle">Don't let editing slow down your first draft</p>
 </header>
 <main>
   <slot />
 </main>
+<footer>
+  <p>Made by <a href="https://twitter.com/_edjw">Ed Johnson-Williams</a></p>
+</footer>
