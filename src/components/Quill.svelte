@@ -196,7 +196,7 @@ Breeze through your typos. You can clean them up later.
   const updateStore = (event) => {
     $contents = {
       datetime: new Date().getTime(),
-      html: event.detail.html,
+      html: event.detail.html.replace(new RegExp(`<p><br></p>`, "g"), ""),
       contents: event.detail.contents,
       plainText: event.detail.plainText,
     };
@@ -230,6 +230,17 @@ Breeze through your typos. You can clean them up later.
       width: 96vw;
       margin-left: calc(50% - 48vw);
     }
+  }
+
+  :global(div.ql-editor blockquote, div.ql-editor h1, div.ql-editor
+      h2, div.ql-editor h3, div.ql-editor h4, div.ql-editor h5, div.ql-editor
+      h6, div.ql-editor ol, div.ql-editor p, div.ql-editor pre, div.ql-editor
+      ul) {
+    margin-top: 1rem;
+  }
+
+  :global(.ql-editor.ql-blank::before) {
+    margin-top: 1rem;
   }
 </style>
 

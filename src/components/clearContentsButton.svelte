@@ -14,6 +14,10 @@
     $contents.contents = undefined;
     $contents.plainText = undefined;
     document.querySelector(".ql-editor").innerHTML = "";
+    document.querySelector("button#copyForWordButton").textContent =
+      "Copy for Word / Google Docs";
+    document.querySelector("button#copyAsMarkdownButton").textContent =
+      "Copy as Markdown";
     dispatch("allowTyping");
   };
 </script>

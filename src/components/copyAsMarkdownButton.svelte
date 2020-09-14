@@ -10,9 +10,10 @@
     }
 
     try {
-      const html = $contents.html.replace("<p><br></p>", "");
+      const html = $contents.html;
       const markdown = turndownService.turndown(html);
       await navigator.clipboard.writeText(markdown);
+      event.target.textContent = "Copied!";
     } catch (error) {
       console.error("Copy failed", error);
     }
@@ -26,4 +27,7 @@
   }
 </style>
 
-<button class="button" on:click={addMarkdownToClipboard}>Copy as Markdown</button>
+<button
+  class="button"
+  id="copyAsMarkdownButton"
+  on:click={addMarkdownToClipboard}>Copy as Markdown</button>

@@ -5,11 +5,14 @@
 
   const addTextToClipboard = async (event) => {
     try {
-      const text = $contents.html.replace("<p><br></p>", "");
+      const formattedText = $contents.html;
+      const plainText = $contents.plainText;
       const item = new ClipboardItem({
-        "text/html": new Blob([text], { type: "text/html" }),
+        "text/html": new Blob([formattedText], { type: "text/html" }),
+        "text/plain": new Blob([plainText], { type: "text/plain" }),
       });
       await write([item]);
+      event.target.textContent = "Copied!";
     } catch (error) {
       console.error("Copy failed", error);
     }
@@ -23,4 +26,5 @@
   }
 </style>
 
-<button class="button" on:click={addTextToClipboard}>Copy for Word / Google Docs</button>
+<button class="button" id="copyForWordButton" on:click={addTextToClipboard}>Copy
+  for Word / Google Docs</button>
