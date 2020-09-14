@@ -225,6 +225,7 @@ Breeze through your typos. You can clean them up later.
 
   :global(div.ql-editor) {
     min-height: 300px;
+    padding-top: 0;
   }
 
   :global(doc.ql-toolbar button, doc.ql-toolbar button) {
