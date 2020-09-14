@@ -237,14 +237,6 @@ Breeze through your typos. You can clean them up later.
     margin: 10px;
   }
 
-  @media only screen and (max-width: 768px) {
-    div.editor-wrapper,
-    div.button-wrapper {
-      width: 96vw;
-      margin-left: calc(50% - 48vw);
-    }
-  }
-
   :global(div.ql-editor blockquote, div.ql-editor h1, div.ql-editor
       h2, div.ql-editor h3, div.ql-editor h4, div.ql-editor h5, div.ql-editor
       h6, div.ql-editor ol, div.ql-editor p, div.ql-editor pre, div.ql-editor
