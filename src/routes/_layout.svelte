@@ -8,6 +8,14 @@
     padding: 0.5rem 2rem;
     margin: 0 auto;
   }
+  
+    @media only screen and (max-width: 768px) {
+    main,
+    header {
+      width: 96vw;
+      margin-left: calc(50% - 48vw);
+    }
+  }
 
   h1 {
     margin-bottom: 0;
