@@ -8,11 +8,22 @@
     padding: 0.5rem 2rem;
   }
 
+  footer {
+    margin: 2rem 2rem 1rem 2rem;
+    border-top: 1px solid #333;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
   @media only screen and (max-width: 768px) {
     header,
     main,
     footer {
       padding: 0.5rem 0;
+    }
+
+    footer {
+      margin: 2rem 0rem 1rem 0rem;
     }
   }
 
@@ -23,13 +34,6 @@
   p.subtitle {
     font-size: 16px;
     margin-top: 0.5rem;
-  }
-
-  footer {
-    margin: 2rem 2rem 1rem 2rem;
-    border-top: 1px solid #333;
-    padding-left: 0;
-    padding-right: 0;
   }
 
   footer p {
