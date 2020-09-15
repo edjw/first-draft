@@ -51,4 +51,8 @@
 </main>
 <footer>
   <p>Made by <a href="https://twitter.com/_edjw">Ed Johnson-Williams</a></p>
+  <p>
+    Finding this useful? <a href="https://ko-fi.com/edjohnsonwilliams">Chip in
+      to help make First Draft better</a>
+  </p>
 </footer>
