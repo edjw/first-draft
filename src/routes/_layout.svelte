@@ -5,9 +5,7 @@
   header,
   main,
   footer {
-    max-width: 56rem;
     padding: 0.5rem 2rem;
-    margin: 0 auto;
   }
 
   @media only screen and (max-width: 768px) {
@@ -28,9 +26,10 @@
   }
 
   footer {
-    margin: 1rem auto;
-    padding: 0;
+    margin: 2rem 2rem 1rem 2rem;
     border-top: 1px solid #333;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   footer p {
