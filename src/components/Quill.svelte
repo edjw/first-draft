@@ -147,6 +147,8 @@ Breeze through your typos. You can clean them up later.
       placeholder: placeholderText,
     });
 
+    quill.root.setAttribute("spellcheck", false);
+
     quill.setContents($contents.contents);
     quill.focus();
 
