@@ -4,7 +4,7 @@
   const dispatch = createEventDispatcher();
 
   const confirmClear = () => {
-    if (confirm("Are you sure you want to delete all your text?")) {
+    if (confirm("This will delete all your text. Are you sure?")) {
       clearContents();
     }
   };
