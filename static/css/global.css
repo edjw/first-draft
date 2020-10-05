@@ -64,7 +64,7 @@ section > div > * + * {
 div#sapper {
   height: 100vh;
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 100%;
   grid-template-rows: auto 1fr auto;
   grid-template-areas: "header" "main" "footer";
   max-width: 56rem;
