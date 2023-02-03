@@ -45,7 +45,7 @@
 <header>
   <h1>First Draft</h1>
   <p class="subtitle">Don't let editing slow down your first draft</p>
-  <p><a href="https://draft-one.com">Now available as a standalone desktop app</a></p>
+  <p><a href="https://draft-one.com">Get the much improved standalone desktop app</a></p>
 </header>
 <main>
   <slot />
@@ -55,7 +55,6 @@
   <p><a href="https://github.com/edjw/first-draft">See this project on Github</a></p>
   <p>
     Finding this useful?
-    <a href="https://ko-fi.com/edjohnsonwilliams">Chip in to help make First
-      Draft better</a>
+      <p><a href="https://draft-one.com">Get the much improved standalone desktop app</a></p>
   </p>
 </footer>
