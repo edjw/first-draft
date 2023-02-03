@@ -45,6 +45,7 @@
 <header>
   <h1>First Draft</h1>
   <p class="subtitle">Don't let editing slow down your first draft</p>
+  <p><a href="https://draft-one.com">Now available as a standalone desktop app</a></p>
 </header>
 <main>
   <slot />
