@@ -55,6 +55,6 @@
   <p><a href="https://github.com/edjw/first-draft">See this project on Github</a></p>
   <p>
     Finding this useful?
-      <p><a href="https://draft-one.com">Get the much improved standalone desktop app</a></p>
+      <p><a href="https://draft-one.com">Get the much improved standalone desktop app</a>
   </p>
 </footer>
